@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Tutorial</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="JS/reservas.js"></script>
+
+</head>
+
+<body>
+    <h1> Reservation</h1>
+    <div id="resultado5"></div>
+    <button onclick="traerInformacionReservacion()" > Consultar Reservaciones</button>
+    
+    <div>
+        <input type="text" id="startDate" placeholder="startDate">
+        <input type="text" id="devolutionDate" placeholder="devolutionDate">
+        <input type="text" id="status" placeholder="status">
+        
+    </div>
+    <button onclick="guardarInformacionReservacion()">Guardar Reservacion</button>
+</body>
+</html>
