@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Tutorial</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="JS/cliente.js"></script>
+
+</head>
+
+<body>
+<h1> Registro de clientes </h1>
+
+<div id="resultado"></div>
+<button onclick="traerInformacionuno()"> Consultar </button>
+<div>
+		<input type="number" id="idClient" placeholder="idClient">
+        <input type="email" id="email" placeholder="correo Electronico">
+        <input type="text" id="password" placeholder="contraseña">
+		<input type="text" id="name" placeholder="nombre">
+		<input type="number" id="age" placeholder="edad">
+</div>
+   
+    
+
+
+<button onclick="guardarInformacionuno()">Guardar!</button>
+<button onclick="editarInformacionuno()">Actualizar!</button>
+
+</body>
+
+</html>
