@@ -1,6 +1,6 @@
 function printSelect(){
 	$.ajax({    
-		url : "http://localhost:8080/api/Motorbike/all",
+		url : "http://129.151.112.171:8080/api/Motorbike/all",
 		type : 'GET',
 		dataType : 'json',
 		contentType: "application/json; charset=utf-8",
@@ -23,7 +23,7 @@ error : function(xhr, status) {
 
 function traerInformacion(){
     $.ajax({
-        url:"http://localhost:8080/api/Motorbike/all",
+        url:"http://129.151.112.171:8080/api/Motorbike/all",
         type: "GET",
         datatype: "JSON",
         success:function(respuesta){
@@ -70,7 +70,7 @@ function guardarInformacion(){
 
     let dataToSend=JSON.stringify(myData);
         $.ajax({
-        url:"http://localhost:8080/api/Motorbike/save",
+        url:"http://129.151.112.171:8080/api/Motorbike/save",
         type:"POST",
         data:dataToSend,
         datatype:"JSON",
@@ -90,7 +90,7 @@ function guardarInformacion(){
 }
 function llamarInformacion (idmoto){
 	$.ajax({    
-		url : "http://localhost:8080/api/Motorbike/"+idmoto,
+		url : "http://129.151.112.171:8080/api/Motorbike/"+idmoto,
 			type : 'GET',
 		dataType : 'json',
 		contentType: "application/json; charset=utf-8",
@@ -127,7 +127,7 @@ function editarInformacion(){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Motorbike/update",
+        url:"http://129.151.112.171:8080/api/Motorbike/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -151,7 +151,7 @@ function borrarElemento(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Motorbike/"+idElemento,
+        url:"http://129.151.112.171:8080/api/Motorbike/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",

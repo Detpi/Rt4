@@ -1,6 +1,6 @@
 function printSelect(){
 	$.ajax({    
-		url : "http://localhost:8080/api/Category/all",
+		url : "http://129.151.112.171:8080/api/Category/all",
 		type : 'GET',
 		dataType : 'json',
 		contentType: "application/json; charset=utf-8",
@@ -21,7 +21,7 @@ error : function(xhr, status) {
 });
 }function traerInformacionCategorias(){
     $.ajax({
-        url:"http://localhost:8080/api/Category/all",
+        url:"http://129.151.112.171:8080/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta1){
@@ -56,7 +56,7 @@ function guardarInformacionCategorias(){
 
         let dataToSend=JSON.stringify(myData);
         $.ajax({
-        url:"http://localhost:8080/api/Category/save",    
+        url:"http://129.151.112.171:8080/api/Category/save",    
         type:'POST',
         data:dataToSend,
         dataType: 'JSON',
@@ -79,7 +79,7 @@ function guardarInformacionCategorias(){
 }
 function llamarInformacionCategorias (idcategory){
 	$.ajax({    
-		url : "http://localhost:8080/api/Category/"+idcategory,
+		url : "http://129.151.112.171:8080/api/Category/"+idcategory,
 		data: "{}",
 		type : 'GET',
 		dataType : 'json',
@@ -111,7 +111,7 @@ function editarInformacionCategorias(){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Category/update",
+        url:"http://129.151.112.171:8080/api/Category/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -133,7 +133,7 @@ function borrarElementosCategorias(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Category/"+idElemento,
+        url:"http://129.151.112.171:8080/api/Category/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
