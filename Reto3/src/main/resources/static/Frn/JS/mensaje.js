@@ -1,13 +1,16 @@
 function llamarInformacionMensajes(){
     $.ajax({
-        url:"http://localhost:8080/api/Message/all",
-        type:"GET",
-        datatype:"JSON",
+        url:"http://129.151.112.171/api/Message/all",
+        type: "GET",
+        datatype: "JSON",
         success:function(respuesta){
             console.log(respuesta);
+            $("#resultado4").empty();
             pintarRespuestaMensajes(respuesta);
         }
+
     });
+
 }
 
 function pintarRespuestaMensajes(respuesta){
@@ -27,112 +30,81 @@ function pintarRespuestaMensajes(respuesta){
 }
 
 function guardarInformacionMensajes(){
-    let var4 = {
-
-        
+    let myData = {
+        idMessage:$("#idMessage+").val(),
         messageText:$("#messageText").val()
-        
         };
-      
+
+        let dataToSend=JSON.stringify(myData);
         $.ajax({
+        url:"http://129.151.112.171/api/Message/save",    
         type:'POST',
-        contentType: "application/json; charset=utf-8",
+        data:dataToSend,
         dataType: 'JSON',
-        data: JSON.stringify(var4),
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(myData),
         
-        url:"http://localhost:8080/api/Message/save",
        
         
-        success:function(response) {
-                console.log(response);
-            console.log("Se guardo correctamente");
-            alert("Se guardo correctamente");
-            window.location.reload()
-    
-        },
-        
-        error: function(jqXHR, textStatus, errorThrown) {
-              window.location.reload()
-            alert("No se guardo correctamente");
-    
-    
+        success:function() {
+            $("#resultado4").empty();
+            $("#idMessage").val("");
+            $("#messageText").val("");
+            
+
+            llamarInformacionMensajes();
+            alert("se ha guardado el dato");
+
+       
         }
         });
 
 }
-function traerInformaciondos(){
-    $.ajax({
-        url:"http://localhost:8080/api/Message/"+idMessage,
-        type: "GET",
-        datatype: "JSON",
-        success:function(respuesta){
-            console.log(respuesta);
-            $("#resultado4").empty();
-            pintarRespuestados(respuesta);
-        }
-
-    });
-
-}
-
-function pintarRespuestados(respuesta){
-    
-    let myTable ="<table>";
-    for(i=0;i<respuesta.length;i++){
-        myTable+="<tr>";
-        myTable+="<td>"+respuesta[i].idMessage+"</td>";
-        myTable+="<td>"+respuesta[i].messagetext+"</td>";
-       
-        myTable+="</tr>";
-
-    }
-    myTable+="</table>";
-    $("#resultado4").append(myTable);
-
-}
-function guardarInformaciondos(){
-    let myData={
-        idMessage:$("#idMessage").val(),
-        messagetext:$("#messagetext").val()
-     
-    };
-    let dataToSend=JSON.stringify(myData);
-    $.ajax({
-        url:"http://localhost:8080/api/Message/save",
-        type:"POST",
-        data:myData,
-        datatype:"JSON",
-        success:function(respuesta){
-            $("#resultado4").empty();
-            $("#idMessage").empty();
-            $("#messagetext").val("");
-            
-            traerInformaciondos();
-            alert("se ha guardado el dato")
+function traerInformaciondos(idMessage){
+	$.ajax({    
+		url : "http://129.151.112.171/api/Message/"+idMessage,
+		
+		type : 'GET',
+		dataType : 'json',
+		contentType: "application/json; charset=utf-8",
+  
+    success : function(respuesta) {
+		console.log(respuesta);
+        var item=respuesta;
+            $("#idMessage").val(item.idMesaage);
+			$("#messageText").val(item.messageText);
+			
+			
+        },
+      
+        error: function(jqXHR, textStatus, errorThrown) {
+              
         }
     });
-}
+  
+  }
+
 function editarInformaciondos(){
     let myData={
         idMessage:$("#idMessage").val(),
-        messagetext:$("#messagetext").val()
-
+        messageText:$("#messageText").val()
         
     };
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Message/update",
+        url:"http://129.151.112.171/api/Message/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
         datatype:"JSON",
         success:function(respuesta){
-            $("#resultado4").empty();
+            
             $("#idMessage").val("");
-            $("#messagetext").val("");
-          
-            traerInformaciondos();
+            $("#messageText").val("");
+            
+           
+            llamarInformacionMensajes();
             alert("se ha Actualizado")
         }
     });
@@ -143,14 +115,14 @@ function borrarElementod(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Message/"+idElemento,
+        url:"http://129.151.112.171/api/Message/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
         datatype:"JSON",
         success:function(respuesta){
             $("#resultado4").empty();
-            traerInformaciondos();
+            llamarInformacionMensajes();
             alert("Se ha Eliminado.")
         }
     });

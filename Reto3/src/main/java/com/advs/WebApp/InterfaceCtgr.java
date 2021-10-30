@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author David Vargas
+ * @author 
  */
 public interface InterfaceCtgr extends CrudRepository<Categorias,Integer>{
     

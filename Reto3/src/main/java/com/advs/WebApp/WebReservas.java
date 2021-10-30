@@ -52,4 +52,20 @@ public class WebReservas {
     public boolean delete(@PathVariable("id") int reservationId) {
         return servicios.deleteReservation(reservationId);
     }
+   
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+     public List<Reservas> getReservasTiempo (@PathVariable("dateOne")String dateOne, @PathVariable("dateTwo")String dateTwo ){
+         return servicios.reporteTiempoServicio(dateOne, dateTwo);
+     }
+     
+     @GetMapping("/report-clients")
+     public List<ContadorClientes> getClientes(){
+         return servicios.reporteClientesServicio();
+     }
+     
+      @GetMapping("/report-status")
+    public StatusReservas getReservation(){
+        return servicios.getRepStatusRes();
+    }
+
 }

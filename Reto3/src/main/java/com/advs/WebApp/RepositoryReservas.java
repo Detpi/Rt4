@@ -1,7 +1,10 @@
 
 package com.advs.WebApp;
 
+import Model.Clientes;
 import Model.Reservas;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +28,24 @@ public class RepositoryReservas {
     public Reservas save(Reservas reservas){
         return crud.save(reservas);
     }
-        public void delete(Reservas reservas){
+    public void delete(Reservas reservas){
         crud.delete(reservas);
-        }
+    }
+    
+    public List<Reservas> ReservationStatus(String status){
+        return crud.findAllByStatus(status);
+    }
+    public List<Reservas> ReservacionTiempoRepositorio (Date a, Date b){
+         return crud.findAllByStartDateAfterAndStartDateBefore(a, b);
+     }
+     
+     public List<ContadorClientes> getClientesRepositorio(){
+         List<ContadorClientes> res = new ArrayList<>();
+         List<Object[]> report = crud.countTotalReservationsByClient();
+         for(int i=0; i<report.size(); i++){
+             res.add(new ContadorClientes((Long)report.get(i)[1],(Clientes) report.get(i)[0]));
+         }
+         return res;
+     }
+
 }

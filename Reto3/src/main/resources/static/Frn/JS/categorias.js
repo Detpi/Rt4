@@ -1,27 +1,6 @@
-function printSelect(){
-	$.ajax({    
-		url : "http://localhost:8080/api/Category/all",
-		type : 'GET',
-		dataType : 'json',
-		contentType: "application/json; charset=utf-8",
-  
-    success : function(respuesta) {
-		console.log(respuesta);
-		$("#cat").empty();
-		miSelect='<option id="" ></option>';
-		for (i=0; i<respuesta.length; i++){
-			miSelect += '<option value='+ respuesta[i].id+'>'+respuesta[i].name+'</option>'
-		}
-		$("#cat").append(miSelect);
-	},
-   
-error : function(xhr, status) {
-        alert('ha sucedido un problema:'+ status);
-    }
-});
-}function traerInformacionCategorias(){
+function traerInformacionCategorias(){
     $.ajax({
-        url:"http://localhost:8080/api/Category/all",
+        url:"http://129.151.112.171/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta1){
@@ -41,7 +20,7 @@ function pintarRespuestacat(respuesta1){
         myTable+="<td>"+respuesta1[i].description+"</td>";
         myTable+="<td> <button onclick='borrarElementosCategorias("+respuesta1[i].id+")'>Borrar</button>";
         myTable+= '<td><button onclick="llamarInformacionCategorias('+respuesta1[i].id+' )">Editar</button>';
-        printSelect();
+        
         myTable+="</tr>";
     }
     myTable+="</table>";
@@ -50,13 +29,13 @@ function pintarRespuestacat(respuesta1){
 
 function guardarInformacionCategorias(){
     let myData = {
-        name:$("#Cname").val(),
-        description:$("#Cdescription").val()
+        name:$("#name").val(),
+        description:$("#description").val()
         };
 
         let dataToSend=JSON.stringify(myData);
         $.ajax({
-        url:"http://localhost:8080/api/Category/save",    
+        url:"http://129.151.112.171/api/Category/save",    
         type:'POST',
         data:dataToSend,
         dataType: 'JSON',
@@ -79,15 +58,15 @@ function guardarInformacionCategorias(){
 }
 function llamarInformacionCategorias (idcategory){
 	$.ajax({    
-		url : "http://localhost:8080/api/Category/"+idcategory,
-		data: "{}",
+		url : "http://129.151.112.171/api/Category/"+idcategory,
+		
 		type : 'GET',
 		dataType : 'json',
 		contentType: "application/json; charset=utf-8",
   
     success : function(respuesta) {
 		console.log(respuesta);
-        var item=respuesta.items[0];
+        var item=respuesta;
             $("#id").val(item.id);
 			$("#name").val(item.name);
 			$("#description").val(item.description);
@@ -111,7 +90,7 @@ function editarInformacionCategorias(){
     console.log(myData);
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Category/update",
+        url:"http://129.151.112.171/api/Category/update",
         type:"PUT",
         data:dataToSend,
         contentType:"application/JSON",
@@ -122,7 +101,7 @@ function editarInformacionCategorias(){
             $("#name").val("");
             $("#descripcion").val("");
            
-            traerInformacioncategorias();
+            traerInformacionCategorias();
             alert("se ha Actualizado")
         }
     });
@@ -133,7 +112,7 @@ function borrarElementosCategorias(idElemento){
     };
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url:"http://localhost:8080/api/Category/"+idElemento,
+        url:"http://129.151.112.171/api/Category/"+idElemento,
         type:"DELETE",
         data:dataToSend,
         contentType:"application/JSON",
